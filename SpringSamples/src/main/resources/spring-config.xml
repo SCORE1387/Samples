@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+
+    <!-- injecting simple value to constructor args -->
+    <bean name="juggler" class="tk.sekol.spring.samples.injection.Juggler">
+        <constructor-arg value="15"/>
+    </bean>
+
+
+    <!-- injecting reference to other bean to constructor args -->
+    <bean name="poem" class="tk.sekol.spring.samples.injection.ConcretePoem"/>
+    <bean name="poeticJuggler" class="tk.sekol.spring.samples.injection.PoeticJuggler">
+        <constructor-arg value="15"/>
+        <constructor-arg ref="poem"/>
+    </bean>
+
+
+    <!-- factory method example (for example to create singleton in whole application) -->
+    <bean name="stage" class="tk.sekol.spring.samples.injection.Stage" factory-method="getInstance"/>
+
+
+    <!-- prototype scope example (non singleton bean created each time) -->
+    <bean name="ticket" class="tk.sekol.spring.samples.injection.Ticket" scope="prototype"></bean>
+
+
+    <!-- init and destroy methods sample -->
+    <bean name="auditorium"
+          class="tk.sekol.spring.samples.injection.Auditorium"
+          init-method="turnOnLight"
+          destroy-method="turnOffLight"/>
+
+    <!-- Properties injection -->
+    <!--<bean name="piano" class="tk.sekol.spring.samples.injection.Piano"/>-->
+    <bean name="instrumentalist" class="tk.sekol.spring.samples.injection.Instrumentalist">
+        <property name="song" value="Makarena!"/>
+        <!--<property name="instrument" ref="piano"/>-->
+        <property name="instrument">
+            <bean class="tk.sekol.spring.samples.injection.Piano"/>
+        </property>
+    </bean>
+
+    <!-- injecting collections and null property example-->
+    <bean name="piano" class="tk.sekol.spring.samples.injection.Piano"/>
+    <bean name="guitar" class="tk.sekol.spring.samples.injection.Guitar"/>
+    <bean name="onemanband" class="tk.sekol.spring.samples.injection.OneManBand">
+        <property name="nullProperty">
+            <null/>
+        </property>
+        <property name="instruments">
+            <map>
+                <entry key="Piano" value-ref="piano"/>
+                <entry key="Guitar" value-ref="guitar"/>
+            </map>
+            <!--<list>
+                <ref bean="piano"/>
+                <ref bean="guitar"/>
+            </list>-->
+        </property>
+    </bean>
+
+    <!-- SpEL expressions -->
+    <bean name="imitator" class="tk.sekol.spring.samples.injection.Instrumentalist">
+        <property name="instrument" value="#{instrumentalist.instrument}"/>
+        <property name="song" value="#{instrumentalist.song}"/>
+    </bean>
+
+    <bean name="songSelector" class="tk.sekol.spring.samples.injection.SongSelector"/>
+
+    <bean name="singer" class="tk.sekol.spring.samples.injection.Instrumentalist">
+        <property name="instrument" ref="guitar"/>
+        <property name="song" value="#{songSelector.selectSong()?.toUpperCase()}"/>
+    </bean>
+
+    <bean name="circle" class="tk.sekol.spring.samples.injection.Circle">
+        <property name="r" value="#{2}"/>
+        <property name="area" value="#{T(java.lang.Math).PI + circle.r}"/>
+    </bean>
+
+    <!-- abstract beans start -->
+    <bean name="basePianist"
+          class="tk.sekol.spring.samples.injection.Instrumentalist"
+          abstract="true">
+        <property name="song" value="Jingle bells"/>
+        <property name="instrument" ref="piano"/>
+    </bean>
+
+    <bean name="firstPianist" parent="basePianist"/>
+    <bean name="secondPianist" parent="basePianist"/>
+    <bean name="thirdPianist" parent="basePianist">
+        <property name="song" value="Ten o`clock postman"/>
+    </bean>
+
+
+    <bean name="baseSinger" abstract="true">
+        <property name="song" value="Old yellow bricks"/>
+    </bean>
+    <bean name="vocalist"
+          class="tk.sekol.spring.samples.injection.Vocalist"
+          parent="baseSinger"/>
+    <bean name="singingGuitarist"
+          class="tk.sekol.spring.samples.injection.Instrumentalist"
+          parent="baseSinger">
+        <property name="instrument" ref="guitar"/>
+    </bean>
+    <!-- abstract beans end -->
+
+    <!-- methods injection start-->
+    <bean name="magicBox" class="tk.sekol.spring.samples.injection.MagicBoxImpl">
+        <replaced-method name="getContent" replacer="tigerReplacer"/>
+    </bean>
+    <bean name="tigerReplacer" class="tk.sekol.spring.samples.injection.TigerReplacer"/>
+    <bean name="magicCoin" class="tk.sekol.spring.samples.injection.MagicCoin" scope="prototype"/>
+    <bean name="magician" class="tk.sekol.spring.samples.injection.Magician">
+        <lookup-method name="getMagicCoin" bean="magicCoin"/>
+        <!-- Отличия lookup-method и внедрение через метод записи:
+        Даже если компонент имеет область видимости prototype, при ис-
+        пользовании приема внедрения через метод записи компонент
+        будет внедрен в свойство только однажды. Использование приема
+        внедрения методов чтения гарантирует, что каждый вызов метода
+        будет возвращать различные объекты. -->
+        <property name="magicWords" value="Bla bla bla"/>
+        <property name="magicBox" ref="magicBox"/>
+    </bean>
+
+    <!-- methods injection end -->
+
+    <!-- Spring configurable beans -->
+    <!-- doesn`t work now -->
+    <!--<context:spring-configured/>
+    <bean name="configurable"
+          class="tk.sekol.spring.samples.injection.SpringConfigurable"
+          abstract="true">
+        <property name="text" value="Some text"/>
+    </bean>-->
+    <!-- Spring configurable beans end -->
+
+    <!-- Property editor start -->
+    <!-- doesn`t work now -->
+    <!--<bean name="phone" class="tk.sekol.spring.samples.injection.PhoneNumber">
+        <property name="areaCode" value="888"/>
+        <property name="prefix" value="555"/>
+        <property name="number" value="1212"/>
+    </bean>
+    <bean name="contact" class="tk.sekol.spring.samples.injection.Contact">
+        <property name="phoneNumber" ref="phone"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="tk.sekol.spring.samples.injection.PhoneNumber">
+                    <bean id="phoneEditor"
+                          class="tk.sekol.spring.samples.injection.PhoneEditor">
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean name="newContact" class="tk.sekol.spring.samples.injection.Contact">
+        <property name="phoneNumber" value="666-321-1234"/>
+    </bean> -->
+    <!-- Property editor end -->
+
+    <!-- bean postprocessing start -->
+    <!-- bean postprocessing end -->
+
+    <!-- container postprocessing start -->
+    <bean class="tk.sekol.spring.samples.injection.BeanCounter"/>
+    <!-- container postprocessing end -->
+
+    <!-- property placeholder start -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="dataSource" class="tk.sekol.spring.samples.injection.CustomDataSource">
+        <property name="url" value="${database.url}"/>
+        <property name="driverClassName" value="${database.driver}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+    </bean>
+    <!-- property placeholder end -->
+
+    <!-- localization using MessageSource start -->
+    <!-- localization using MessageSource end -->
+
+    <!-- groovy components start -->
+    <bean id="postman" class="tk.sekol.spring.samples.injection.Postman">
+        <property name="letter" ref="groovyLetter"/>
+    </bean>
+    <lang:groovy id="groovyLetter"
+                 script-source="tk/sekol/spring/samples/injection/GroovyLetter.groovy"
+                 refresh-check-delay="5000">
+        <!-- property injection into groovy bean-->
+        <!--<lang:property name="lime" ref="" /> -->
+    </lang:groovy>
+    <!-- groovy components end -->
+
+</beans>

@@ -1,3 +1,5 @@
 rootProject.name = 'Samples'
 
 include 'ConcurrencySamples'
+include 'SpringSamples'
+
