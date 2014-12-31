@@ -2,7 +2,6 @@ package tk.sekol.spring.samples;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import tk.sekol.spring.samples.injection.Postman;
 
 /**
  * @author kolesnikov
@@ -16,7 +15,7 @@ public class Starter {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-config.xml");
 
         //for (int i = 0; i< 11; i++) {
-        //    Performer juggler = context.getBean(Juggler.class);
+        //    Performer juggler = (Performer) context.getBean("juggler");
         //    juggler.perform();
         //    System.out.println(juggler.toString());       //bean is singleton
         //}
@@ -82,7 +81,7 @@ public class Starter {
         //CustomDataSource dataSource = (CustomDataSource) context.getBean("dataSource");
         //System.out.println(dataSource);
 
-        Postman postman = (Postman) context.getBean("postman");
-        System.out.println(postman.toString());
+        //Postman postman = (Postman) context.getBean("postman");
+        //System.out.println(postman.toString());
     }
 }

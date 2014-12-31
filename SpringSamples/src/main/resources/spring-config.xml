@@ -68,7 +68,6 @@
     </bean>
 
     <bean name="songSelector" class="tk.sekol.spring.samples.injection.SongSelector"/>
-
     <bean name="singer" class="tk.sekol.spring.samples.injection.Instrumentalist">
         <property name="instrument" ref="guitar"/>
         <property name="song" value="#{songSelector.selectSong()?.toUpperCase()}"/>
