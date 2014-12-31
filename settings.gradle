@@ -2,4 +2,6 @@ rootProject.name = 'Samples'
 
 include 'ConcurrencySamples'
 include 'SpringSamples'
+include 'SomeJavaFeaturesSample'
+include 'GuavaSamples'
 
