@@ -5,3 +5,5 @@ include 'SpringSamples'
 include 'SomeJavaFeaturesSample'
 include 'GuavaSamples'
 
+include 'CollectionsSamples'
+
