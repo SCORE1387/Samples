@@ -7,9 +7,9 @@ package tk.sekol.samples.collections.stack;
  */
 public interface Stack<V> {
 
-    V pop();
-
     boolean push(V o);
+
+    V pop();
 
     V top();
 
