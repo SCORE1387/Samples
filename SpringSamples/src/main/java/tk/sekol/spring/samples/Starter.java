@@ -2,6 +2,7 @@ package tk.sekol.spring.samples;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import tk.sekol.spring.samples.injection.PoeticJuggler;
 
 /**
  * @author kolesnikov
@@ -83,5 +84,21 @@ public class Starter {
 
         //Postman postman = (Postman) context.getBean("postman");
         //System.out.println(postman.toString());
+
+        //autowiring start
+
+        //autowire by name: name of injected bean same with property name
+        //Instrumentalist instrumentalist2 = (Instrumentalist) context.getBean("instrumentalist2");
+        //instrumentalist2.perform();
+
+        //autowire by type: used autowire-candidate=false for all non-autowired beans
+        //Instrumentalist instrumentalist3 = (Instrumentalist) context.getBean("instrumentalist3");
+        //instrumentalist3.perform();
+
+        //autowire by constructor
+        PoeticJuggler poeticJuggler1 = (PoeticJuggler) context.getBean("poeticJuggler1");
+        poeticJuggler1.perform();
+
+        //autowiring end
     }
 }

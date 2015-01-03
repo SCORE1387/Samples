@@ -2,7 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lang="http://www.springframework.org/schema/lang"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/lang
+       http://www.springframework.org/schema/lang/spring-lang.xsd">
+       <!-- default-autowire="byName" -->
 
     <!-- injecting simple value to constructor args -->
     <bean name="juggler" class="tk.sekol.spring.samples.injection.Juggler">
@@ -38,13 +41,13 @@
         <property name="song" value="Makarena!"/>
         <!--<property name="instrument" ref="piano"/>-->
         <property name="instrument">
-            <bean class="tk.sekol.spring.samples.injection.Piano"/>
+            <bean class="tk.sekol.spring.samples.injection.Piano" autowire-candidate="false"/>
         </property>
     </bean>
 
     <!-- injecting collections and null property example-->
-    <bean name="piano" class="tk.sekol.spring.samples.injection.Piano"/>
-    <bean name="guitar" class="tk.sekol.spring.samples.injection.Guitar"/>
+    <bean name="piano" class="tk.sekol.spring.samples.injection.Piano" autowire-candidate="false"/>
+    <bean name="guitar" class="tk.sekol.spring.samples.injection.Guitar" autowire-candidate="false"/>
     <bean name="onemanband" class="tk.sekol.spring.samples.injection.OneManBand">
         <property name="nullProperty">
             <null/>
@@ -200,5 +203,32 @@
         <!--<lang:property name="lime" ref="" /> -->
     </lang:groovy>
     <!-- groovy components end -->
+
+    <!-- autowiring start -->
+
+    <!-- autowire by name: name of injected bean same with property name-->
+    <bean id="instrument" class="tk.sekol.spring.samples.injection.Guitar"/>
+    <bean id="instrumentalist2"
+          class="tk.sekol.spring.samples.injection.Instrumentalist"
+          autowire="byName">
+        <property name="song" value="Someone like you"/>
+    </bean>
+
+    <!-- autowire by type: used autowire-candidate=false for all non-autowired beans -->
+    <bean id="instrumentalist3"
+          class="tk.sekol.spring.samples.injection.Instrumentalist"
+          autowire="byType">
+        <property name="song" value="Someone like you"/>
+    </bean>
+
+    <!-- autowire by constructor -->
+    <bean name="poeticJuggler1" class="tk.sekol.spring.samples.injection.PoeticJuggler" autowire="constructor">
+        <constructor-arg value="15"/>
+    </bean>
+
+    <!-- autowire by constructor -->
+    <!-- see beans default-autowire -->
+
+    <!-- autowiring end -->
 
 </beans>
