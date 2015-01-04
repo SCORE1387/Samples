@@ -1,6 +1,7 @@
 package tk.sekol.samples.collections.deque;
 
 /**
+ * based on two-way linked list idea
  * @author kolesnikov
  */
 public class LinkedDeque<V> implements Deque<V> {
