@@ -1,6 +1,8 @@
 package tk.sekol.samples.collections.stack;
 
 /**
+ * Stack implementation based on linked list
+ * All methods have complexity O(1)
  * @author kolesnikov
  */
 public class LinkedStack<V> implements Stack<V> {
@@ -10,7 +12,7 @@ public class LinkedStack<V> implements Stack<V> {
 
     @Override
     public boolean push(V o) {
-        Node<V> newNode = new Node<>(o, top);
+        Node<V> newNode = new Node<>();
         newNode.setObject(o);
         if (top != null) newNode.setNext(top);
         top = newNode;
@@ -43,31 +45,31 @@ public class LinkedStack<V> implements Stack<V> {
         return size <= 0;
     }
 
-    private class Node<V> {
-        private V object = null;
-        private Node<V> next = null;
+    private class Node<T> {
+        private T object = null;
+        private Node<T> next = null;
 
         public Node() {
         }
 
-        public Node(V object, Node<V> next) {
+        public Node(T object, Node<T> next) {
             this.object = object;
             this.next = next;
         }
 
-        public V getObject() {
+        public T getObject() {
             return object;
         }
 
-        public void setObject(V object) {
+        public void setObject(T object) {
             this.object = object;
         }
 
-        public Node<V> getNext() {
+        public Node<T> getNext() {
             return next;
         }
 
-        public void setNext(Node<V> next) {
+        public void setNext(Node<T> next) {
             this.next = next;
         }
     }
