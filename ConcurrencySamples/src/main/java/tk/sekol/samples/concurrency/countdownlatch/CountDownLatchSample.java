@@ -15,25 +15,19 @@ public class CountDownLatchSample {
 
         ExecutorService executorService = Executors.newFixedThreadPool(2);
 
-        Callable<String> task1 = new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                System.out.println("task1 start");
-                Thread.sleep(13000);
-                System.out.println("task1 finish");
-                latch.countDown();
-                return "task1";
-            }
+        Callable<String> task1 = () -> {
+            System.out.println("task1 start");
+            Thread.sleep(13000);
+            System.out.println("task1 finish");
+            latch.countDown();
+            return "task1";
         };
-        Callable<String> task2 = new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                System.out.println("task2 start");
-                Thread.sleep(24000);
-                System.out.println("task2 finish");
-                latch.countDown();
-                return "task2";
-            }
+        Callable<String> task2 = () -> {
+            System.out.println("task2 start");
+            Thread.sleep(24000);
+            System.out.println("task2 finish");
+            latch.countDown();
+            return "task2";
         };
 
         executorService.submit(task1);
