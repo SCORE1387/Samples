@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/beans/spring-context.xsd
        http://www.springframework.org/schema/lang
        http://www.springframework.org/schema/lang/spring-lang.xsd">
        <!-- default-autowire="byName" -->
@@ -230,5 +234,72 @@
     <!-- see beans default-autowire -->
 
     <!-- autowiring end -->
+
+
+    <!-- annotations autowiring start -->
+
+    <!-- turn on autoscan for annotations autowiring -->
+    <context:annotation-config/>
+
+    <!-- some usage examples below (@Autowired - spring try to find strictly one bean by type):
+        //on set method
+        @Autowired
+        public void setInstrument(Instrument instrument) {
+            this.instrument = instrument;
+        }
+
+        //on other method
+        @Autowired
+        public void heresYourInstrument(Instrument instrument) {
+            this.instrument = instrument;
+        }
+
+        //on constructor
+        @Autowired
+        public Instrumentalist(Instrument instrument) {
+            this.instrument = instrument;
+        }
+
+        //on private field
+        @Autowired
+        private Instrument instrument;
+
+        //required attribute
+        @Autowired(required=false)
+        private Instrument instrument;
+    -->
+
+    <!-- Примечательно, что атрибут required можно использовать везде,
+    где допускается использовать аннотацию @Autowired. Но когда эта ан-
+    нотация применяется к конструкторам, только один из них может
+    быть отмечен аннотацией @Autowired с атрибутом required, установ-
+    ленным в значение true. Для всех остальных конструкторов анно-
+    тации @Autowired должны иметь атрибут required со значением false.
+    Кроме того, при наличии нескольких конструкторов, отмеченных
+    аннотацией @Autowired, Spring будет выбирать конструктор, где боль-
+    ше всего аргументов могут быть связаны. -->
+
+    <!--
+        //Qualifiers
+        @Autowired
+        @Qualifier("guitar")
+        private Instrument instrument;
+    -->
+
+    <!-- defining new qualifiers
+        @Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
+        @Retention(RetentionPolicy.RUNTIME)
+        @Qualifier
+        public @interface StringedInstrument { }
+
+        @StringedInstrument
+        public class Guitar implements Instrument { }
+
+        @Autowired
+        @StringedInstrument
+        private Instrument instrument;
+    -->
+
+    <!-- annotations autowiring end -->
 
 </beans>

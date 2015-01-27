@@ -100,5 +100,11 @@ public class Starter {
         poeticJuggler1.perform();
 
         //autowiring end
+
+        //annotations autowiring start
+
+
+
+        //annotations autowiring end
     }
 }
