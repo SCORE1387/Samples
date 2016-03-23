@@ -30,7 +30,7 @@
 
 
     <!-- prototype scope example (non singleton bean created each time) -->
-    <bean name="ticket" class="tk.sekol.spring.samples.injection.Ticket" scope="prototype"></bean>
+    <bean name="ticket" class="tk.sekol.spring.samples.injection.Ticket" scope="prototype"/>
 
 
     <!-- init and destroy methods sample -->

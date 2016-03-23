@@ -7,13 +7,13 @@ import tk.sekol.spring.samples.injection.PoeticJuggler;
 /**
  * @author kolesnikov
  */
-public class Starter {
+public class InjectionSamplesStarter {
     public static void main(String[] agrs) {
         injection();
     }
 
     private static void injection() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-config-injection.xml");
 
         //for (int i = 0; i< 11; i++) {
         //    Performer juggler = (Performer) context.getBean("juggler");
