@@ -1,0 +1,10 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+httpPort = 8080
+stopPort = 9090
+stopKey = "stopKey"
