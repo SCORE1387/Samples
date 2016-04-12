@@ -1,0 +1,158 @@
+body {
+    color: #777;
+    background-color: #fff;
+    font: 400 15px/1.8 Lato, sans-serif;
+}
+
+.container {
+    padding: 80px 120px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    color: #d5d5d5;
+    border: none;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity:0.9;
+}
+
+/* Add a gray color to all navbar links */
+.navbar li a, .navbar .navbar-brand {
+    color: #d5d5d5 !important;
+}
+
+/* On hover, the links will turn white */
+.navbar-nav li a:hover {
+    color: #fff !important;
+}
+
+/* The active link */
+.navbar-nav li.active a {
+    color: #fff !important;
+    background-color:#29292c !important;
+}
+
+/* Remove border color from the collapsible button */
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.carousel-inner img {
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%); /* make all photos black and white */
+    width: 100%; /* Set width to 100% */
+    /*margin: auto;*/
+}
+
+.carousel-caption h3 {
+    color: #fff !important;
+}
+
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+}
+
+.bg-gray {
+    background-color: #2d2d30;
+}
+
+h3 {
+    letter-spacing: 10px;
+    margin-bottom: 30px;
+}
+
+.about-band h3 {
+    text-transform: uppercase;
+    color: #111;
+}
+
+.person {
+    border: 10px solid transparent;
+    opacity: 0.7;
+    width: 80%;
+    height: 80%;
+    margin-bottom: 10px;
+}
+
+.person:hover {
+    border-color: #f1f1f1;
+}
+
+.tour-dates {
+    background-color: #2d2d30;
+    color: #bdbdbd;
+}
+
+.tour-dates h3 {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.list-group-item:first-child {
+    border-radius: 0;
+}
+
+.list-group-item:last-child {
+    border-radius: 0;
+}
+
+.btn {
+    border: 1px #333 solid;
+    border-radius: 0;
+    background-color: #333;
+    color: #ffffff;
+    transition: .2s;
+}
+
+.btn:hover, .btn:focus {
+    background-color: #ffffff;
+}
+
+.thumbnail {
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;;
+    padding: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.contact h3 {
+    color: #111;
+}
+
+.nav-tabs li a {
+    color: #777;
+}
+
+#googleMap {
+    height:400px;
+    width:100%;
+    filter: grayscale(100%);
+}
+
+footer {
+    padding: 60px 50px;
+    background-color: #111;
+    color: #ffffff;
+}
+
+footer .btn-up {
+    color: #ffffff;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #555;
+}
