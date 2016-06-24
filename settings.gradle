@@ -14,6 +14,6 @@ include 'JavaEightSamples'
 include 'AlgorithmsSamples'
 include 'JettySample'
 include 'SpringDataSamples'
-include 'SpringMVCSamples'
+include 'SpringMVCTilesJSPSample'
 include 'BootstrapSamples'
 
