@@ -15,5 +15,6 @@ include 'AlgorithmsSamples'
 include 'JettySample'
 include 'SpringDataSamples'
 include 'SpringMVCTilesJSPSample'
+include 'SpringMVCVelocitySample'
 include 'BootstrapSamples'
 
