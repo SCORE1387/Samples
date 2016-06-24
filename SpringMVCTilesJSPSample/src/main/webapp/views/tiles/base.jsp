@@ -10,8 +10,8 @@
     <title>Spring MVC with Tiles and JSP</title>
 
     <!-- Bootstrap -->
-    <link href="../../../resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../../../resources/css/custom.css" rel="stylesheet">
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/custom.css"/>" rel="stylesheet">
 
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">

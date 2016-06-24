@@ -25,7 +25,7 @@
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
         <property name="definitions">
             <list>
-                <value>/WEB-INF/views/tiles/tiles-templates.xml</value>
+                <value>/views/tiles/tiles-templates.xml</value>
             </list>
         </property>
         <property name="preparerFactoryClass"
