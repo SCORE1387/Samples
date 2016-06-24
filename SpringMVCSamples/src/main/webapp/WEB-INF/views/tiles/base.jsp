@@ -8,7 +8,7 @@
     <title>
         Spring MVC Sample
     </title>
-    <link rel="stylesheet" href="../../../../SpringMVCSamples/resources/css/custom.css" type="text/css"/>
+    <link rel="stylesheet" href="../../../resources/css/custom.css" type="text/css"/>
 </head>
 <body>
 
