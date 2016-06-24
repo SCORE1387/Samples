@@ -2,7 +2,7 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 war {
-    archiveName 'SpringMVCSamples.war'
+    archiveName 'SpringMVCTilesJSPSample.war'
 }
 
 dependencies {
