@@ -21,11 +21,11 @@
 </head>
 <body>
 
-    #parse("/velocity/fragments/_header.vm")
+    #parse("/fragments/_header.vm")
 
     $screen_content
 
-    #parse("/velocity/fragments/_footer.vm")
+    #parse("/fragments/_footer.vm")
 
 </body>
 </html>

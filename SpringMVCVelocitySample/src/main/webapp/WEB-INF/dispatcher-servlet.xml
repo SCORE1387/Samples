@@ -12,14 +12,14 @@
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="suffix" value=".vm"/>
-        <property name="prefix" value="/velocity/"/>
-        <property name="layoutUrl" value="/velocity/layouts/layout.vm"/>
+        <property name="prefix" value=""/>
+        <property name="layoutUrl" value="/layouts/layout.vm"/>
         <property name="exposeRequestAttributes" value="true"/>
         <property name="exposeSessionAttributes" value="true"/>
     </bean>
 
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath" value="/"/>
+        <property name="resourceLoaderPath" value="/velocity/"/>
     </bean>
 
 </beans>
